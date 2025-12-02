@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Time-Series Insight Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Connection Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <h2>Backend Not Connected</h2>
+            <p>The Python backend is not running or not reachable.</p>
+            <p>Please run the following command in your terminal:</p>
+            <code>python app.py</code>
+            <button onclick="location.reload()">Retry Connection</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>AI Time-Series Insight Platform</h1>
+            <p>Climate Data Analysis & Forecasting</p>
+        </header>
+
+        <div class="controls">
+            <select id="areaSelect"></select>
+            <select id="elementSelect"></select>
+            <select id="monthSelect">
+                <option value="All months">All months</option>
+            </select>
+            <button id="updateBtn">Update View</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="forecast">Forecast Dashboard</button>
+            <button class="tab-btn" data-tab="anomaly">Anomaly Monitor</button>
+            <button class="tab-btn" data-tab="similarity">Similar Areas Explorer</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Forecast Dashboard -->
+            <div id="forecast" class="tab-pane active">
+                <div class="dashboard-grid">
+                    <div class="chart-container">
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+                    <div class="cards">
+                        <div class="card">
+                            <h3>Trend (Last 10 Years)</h3>
+                            <p id="trendValue">--</p>
+                        </div>
+                        <div class="card">
+                            <h3>Expected Next Year</h3>
+                            <p id="nextYearValue">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anomaly Monitor -->
+            <div id="anomaly" class="tab-pane">
+                <div class="dashboard-grid">
+                    <div class="chart-container">
+                        <canvas id="anomalyChart"></canvas>
+                    </div>
+                    <div class="anomaly-list">
+                        <h3>Detected Anomalies</h3>
+                        <ul id="anomalyList"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Areas Explorer -->
+            <div id="similarity" class="tab-pane">
+                <div class="similarity-container">
+                    <h3>Areas similar to <span id="currentArea"></span></h3>
+                    <ul id="similarList"></ul>
+                    <div class="chart-container">
+                        <canvas id="similarityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
